@@ -3,7 +3,9 @@ pipeline {
            stages {
                 stage("Hello") {
                      steps {
-                          sh export GOOGLE_APPLICATION_CREDENTIALS="/home/averboonen/llave-final.json"
+                          echo $GIT_COMMITTER_NAME
+                          echo "$GIT_COMMITTER_NAME"
+                          export GOOGLE_APPLICATION_CREDENTIALS="/home/averboonen/llave-final.json"
                           echo "Estoy loogeandome en google"
                      }
                 }
