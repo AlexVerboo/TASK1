@@ -3,7 +3,7 @@ pipeline {
            stages {
                 stage("Hello") {
                      steps {
-                          export GOOGLE_APPLICATION_CREDENTIALS="/home/averboonen/llave-final.json"
+                          sh export GOOGLE_APPLICATION_CREDENTIALS="/home/averboonen/llave-final.json"
                           echo "Estoy loogeandome en google"
                      }
                 }
