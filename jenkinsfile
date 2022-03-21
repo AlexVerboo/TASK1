@@ -4,13 +4,13 @@ pipeline {
                 stage("Hello") {
                      steps {
                           script {
-            env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+            currentBuild.displayName = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
         }
                          //env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
                          //echo 'scm : the commit id is ' + env.GIT_COMMIT_MSG
                          
                          echo "Hello World"
-                         currentBuild.displayName = "$env.GIT_COMMIT_MSG"
+                        // currentBuild.displayName = "$env.GIT_COMMIT_MSG"
                      }
                 }
                  stage("TERRA") {
