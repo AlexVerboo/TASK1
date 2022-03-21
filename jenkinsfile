@@ -3,7 +3,8 @@ pipeline {
            stages {
                 stage("Hello") {
                      steps {
-                          currentBuild.displayName = "${env.GIT_COMMIT}"
+                          def scmVars = checkout([...])
+                          echo 'scm : the commit id is ' + scmVars.GIT_COMMIT
                           echo "Estoy cambiando el nombre"
                      }
                 }
