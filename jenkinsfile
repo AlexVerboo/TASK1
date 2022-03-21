@@ -5,9 +5,9 @@ pipeline {
                      steps {
                           script {
                currentBuild.displayName = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-               export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json" 
                         }        
                          echo "Hello World"
+                         sh 'export GOOGLE_APPLICATION_CREDENTIALS="/home/averboonen/alex-verboonen-2022-run-5-927bac94f1b2.json" '
                      }
                 }
                  stage("TERRA") {
