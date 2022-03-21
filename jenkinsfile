@@ -3,7 +3,7 @@ pipeline {
            stages {
                 stage("Hello") {
                      steps {
-                          currentBuild.displayName = "$GIT_COMMIT"
+                          currentBuild.displayName = "${env.GIT_COMMIT}"
                           echo "Estoy cambiando el nombre"
                      }
                 }
