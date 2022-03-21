@@ -4,13 +4,10 @@ pipeline {
                 stage("Hello") {
                      steps {
                           script {
-            currentBuild.displayName = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-        }
-                         //env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-                         //echo 'scm : the commit id is ' + env.GIT_COMMIT_MSG
-                         
+               currentBuild.displayName = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+               export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json" 
+                        }        
                          echo "Hello World"
-                        // currentBuild.displayName = "$env.GIT_COMMIT_MSG"
                      }
                 }
                  stage("TERRA") {
