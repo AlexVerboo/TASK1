@@ -3,8 +3,8 @@ pipeline {
            stages {
                 stage("Hello") {
                      steps {
-                          def scmVars = checkout([...])
-                          echo 'scm : the commit id is ' + scmVars.GIT_COMMIT
+                          shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+                          echo 'scm : the commit id is ' + shortCommit
                           echo "Estoy cambiando el nombre"
                      }
                 }
