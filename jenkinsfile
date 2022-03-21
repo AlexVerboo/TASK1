@@ -10,7 +10,7 @@ pipeline {
                          //echo 'scm : the commit id is ' + env.GIT_COMMIT_MSG
                          
                          echo "Hello World"
-                         echo "$env.GIT_COMMIT_MSG"
+                         currentBuild.displayName = "$env.GIT_COMMIT_MSG"
                      }
                 }
                  stage("TERRA") {
