@@ -3,9 +3,8 @@ pipeline {
            stages {
                 stage("Hello") {
                      steps {
-                          echo "$GIT_COMMIT"
-                          export GOOGLE_APPLICATION_CREDENTIALS="/home/averboonen/llave-final.json"
-                          echo "Estoy loogeandome en google"
+                          currentBuild.displayName = "$GIT_COMMIT"
+                          echo "Estoy cambiando el nombre"
                      }
                 }
                  stage("TERRA") {
