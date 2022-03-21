@@ -1,7 +1,6 @@
 pipeline {
            agent any
            stages {
-                }
                 stage("Hello") {
                      steps {
                          env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
