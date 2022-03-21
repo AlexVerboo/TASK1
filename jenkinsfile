@@ -1,30 +1,12 @@
 pipeline {
            agent any
            stages {
-                stage("VARIABLES") {
-                     script {
-      // Checkout the repository and save the resulting metadata
-      def scmVars = checkout([$class: 'GitSCM', ...])
-
-      // Display the variable using scmVars
-      echo "scmVars.GIT_COMMIT"
-      echo "${scmVars.GIT_COMMIT}"
-
-      // Displaying the variables saving it as environment variable
-      env.GIT_COMMIT = scmVars.GIT_COMMIT
-      echo "env.GIT_COMMIT"
-      echo "${env.GIT_COMMIT}"
-    }
-
-    // Here the metadata is available as environment variable
-    ...
-  }
                 }
                 stage("Hello") {
                      steps {
-                          shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-                          echo 'scm : the commit id is ' + shortCommit
-                          echo "Estoy cambiando el nombre"
+                         env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                         echo 'scm : the commit id is ' + env.GIT_COMMIT_MSG
+                         echo "Estoy cambiando el nombre"
                      }
                 }
                  stage("TERRA") {
