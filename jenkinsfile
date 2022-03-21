@@ -3,9 +3,9 @@ pipeline {
            stages {
                 stage("Hello") {
                      steps {
-                         env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-                         echo 'scm : the commit id is ' + env.GIT_COMMIT_MSG
-                         echo "Estoy cambiando el nombre"
+                         //env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                         //echo 'scm : the commit id is ' + env.GIT_COMMIT_MSG
+                         echo "Hello World"
                      }
                 }
                  stage("TERRA") {
