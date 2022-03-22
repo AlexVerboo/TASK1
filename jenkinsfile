@@ -12,6 +12,7 @@ pipeline {
                 }
                  stage("TERRA") {
                      steps {
+                          sh 'gcloud auth application-default login'
                           sh 'terraform init'
                           sh 'terrafor plan'
                      }
