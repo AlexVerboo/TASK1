@@ -13,7 +13,7 @@ pipeline {
                  stage("TERRA") {
                      steps {
                           sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file="/home/averboonen/alex-verboonen-2022-run-5-927bac94f1b2.json"'
-                          sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth application-default login --key-file="/home/averboonen/alex-verboonen-2022-run-5-927bac94f1b2.json"'
+                          sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth application-default login'
                           sh 'terraform init'
                           sh 'terrafor plan'
                      }
