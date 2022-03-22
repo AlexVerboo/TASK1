@@ -13,9 +13,16 @@ pipeline {
                  stage("TERRA") {
                      steps {
                           sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file="/home/averboonen/alex-verboonen-2022-run-5-927bac94f1b2.json"'
-                          sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth application-default login'
-                          sh 'terraform init'
-                          sh 'terrafor plan'
+                          //sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth application-default login'
+                         //sh 'terraform init'
+                          // sh 'terrafor plan'
+                     }
+                }
+                stage("Mover Archivo") {
+                     steps {
+                         sh touch "archivo_prueba$(date +_%Y%m%d_%H%M).txt"
+                         sh '/home/averboonen/google-cloud-sdk/bin/gcloud pubsub subscriptions pull example-subscription --format=json >> "archivo_prueba$(date +_%Y%m%d_%H%M).txt"'
+                         sh '/home/averboonen/google-cloud-sdk/bin/gsutil cp "archivo_prueba$(date +_%Y%m%d_%H%M).txt" gs://bucket-alexv-task1'
                      }
                 }
            }
