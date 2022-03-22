@@ -21,7 +21,7 @@ pipeline {
                 stage("Mover Archivo") {
                      steps {
                           script {
-                         touch "archivo_prueba$(date +_%Y%m%d_%H%M).txt"
+                         //touch "archivo_prueba$(date +_%Y%m%d_%H%M).txt"
                          sh '/home/averboonen/google-cloud-sdk/bin/gcloud pubsub subscriptions pull example-subscription --format=json >> "archivo_prueba$(date +_%Y%m%d_%H%M).txt"'
                          sh '/home/averboonen/google-cloud-sdk/bin/gsutil cp "archivo_prueba$(date +_%Y%m%d_%H%M).txt" gs://bucket-alexv-task1'
                           }
