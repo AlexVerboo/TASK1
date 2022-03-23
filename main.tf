@@ -10,18 +10,18 @@ resource "google_project_iam_custom_role" "custom_role" {
 }
 #permisos para SA
 resource "google_project_iam_binding" "pubsub_iam" {
-    project="alex-verboonen-2022-run-5"
+    project="sapient-stacker-344918"
     role = "roles/pubsub.viewer"
     members = ["serviceAccount:${google_service_account.sa_servicio_task1.email}"]
 }
 resource "google_project_iam_binding" "storage_iam" {
-    project="alex-verboonen-2022-run-5"
+    project="sapient-stacker-344918"
     role = "roles/storage.admin"
     members = ["serviceAccount:${google_service_account.sa_servicio_task1.email}"]
 }
 resource "google_project_iam_binding" "custom_iam" {
-    project="alex-verboonen-2022-run-5"
-    role = "projects/alex-verboonen-2022-run-5/roles/myCustomRole"
+    project="sapient-stacker-344918"
+    role = "projects/sapient-stacker-344918/roles/myCustomRole"
     members = ["serviceAccount:${google_service_account.sa_servicio_task1.email}"]
 }
 #Declaracion para PUBSUB y Scheduler
@@ -68,7 +68,7 @@ resource "google_compute_instance" "task1_instance" {
 }
 #declaracion de bucket
 resource "google_storage_bucket" "task1_bucket" {
-  name          = "bucket-alexv-task1"
+  name          = "bucket-alexverb-task1"
   location      = "EU"
   force_destroy = true
 

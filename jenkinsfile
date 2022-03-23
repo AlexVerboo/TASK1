@@ -1,7 +1,6 @@
 pipeline {
      withCredentials([file(credentialsId: 'key-sa', variable: 'GC_KEY')]) {
-    sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
-    sh("gcloud container clusters get-credentials prod --zone northamerica-northeast1-a --project ${project}")
+    sh("cloud auth  activate-service-account admin-demo@sapient-stacker-344918.iam.gserviceaccount.com --key-file=/home/averboonen/Llaves/sapient-stacker-344918-2a08df5bbf50.json")
   }
            agent any
            stages {
