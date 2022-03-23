@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "bucket-final-alexv"
+    bucket  = "bucketalexdemo"
     prefix  = "terraform/state"
   }
 }
