@@ -16,7 +16,7 @@ pipeline {
           stage('TERRA') {
                steps {
                     sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file="/home/averboonen/Llaves/sapient-stacker-344918-2a08df5bbf50.json"'
-               sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth application-default login'
+               //sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth application-default login'
                sh 'terraform init'
                sh 'terrafor plan'
                }
