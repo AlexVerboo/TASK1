@@ -5,7 +5,7 @@ pipeline {
                      steps {
                           
     
-    sh("gcloud auth  activate-service-account admin-demo@sapient-stacker-344918.iam.gserviceaccount.com --key-file=/home/averboonen/Llaves/sapient-stacker-344918-2a08df5bbf50.json")
+    sh("/home/averboonen/google-cloud-sdk/bin/gcloud auth  activate-service-account admin-demo@sapient-stacker-344918.iam.gserviceaccount.com --key-file=/home/averboonen/Llaves/sapient-stacker-344918-2a08df5bbf50.json")
                           script {
                currentBuild.displayName = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
                         }        
