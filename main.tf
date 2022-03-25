@@ -19,6 +19,11 @@ resource "google_project_iam_binding" "storage_iam" {
     role = "roles/storage.admin"
     members = ["serviceAccount:${google_service_account.sa_servicio_task1.email}"]
 }
+resource "google_project_iam_binding" "sub_iam" {
+    project="sapient-stacker-344918"
+    role = "roles/pubsub.admin"
+    members = ["serviceAccount:${google_service_account.sa_servicio_task1.email}"]
+}
 resource "google_project_iam_binding" "custom_iam" {
     project="sapient-stacker-344918"
     role = "projects/sapient-stacker-344918/roles/myCustomRole"
