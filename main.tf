@@ -1,4 +1,4 @@
-#DECalracion de service account
+#Declaración de service account
 resource "google_service_account" "sa_servicio_task1" {
   account_id   = "sa-servicio-task1"
 }
@@ -33,9 +33,7 @@ resource "google_compute_instance" "task1_instance" {
   name         = "instance"
   machine_type = "n2-standard-2"
   zone         = "us-central1-a"
-
   tags = ["foo", "bar"]
-
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-9"
@@ -45,7 +43,6 @@ resource "google_compute_instance" "task1_instance" {
   scratch_disk {
     interface = "SCSI"
   }
-
   network_interface {
     network = "default"
 
@@ -53,13 +50,11 @@ resource "google_compute_instance" "task1_instance" {
       // Ephemeral public IP
     }
   }
-
   metadata = {
     foo = "bar"
   }
 
   metadata_startup_script = "echo hi > /test.txt"
-
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = google_service_account.sa_servicio_task1.email
@@ -88,14 +83,9 @@ resource "google_cloud_scheduler_job" "job" {
   }
 }
 
-resource "google_pubsub_subscription" "example" {
-  name  = "example-subscription"
+resource "google_pubsub_subscription" "demosub" {
+  name  = "demosub-subscription"
   topic = google_pubsub_topic.topic.name
-
-  labels = {
-    foo = "bar"
-  }
-
   # 20 minutes
   message_retention_duration = "1200s"
   retain_acked_messages      = true
