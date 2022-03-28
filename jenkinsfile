@@ -1,0 +1,29 @@
+pipeline {
+     agent any
+     stages {
+          stage('Hello') {
+               steps {
+                    sh('/home/averboonen/google-cloud-sdk/bin/gcloud auth  activate-service-account admin-demo@sapient-stacker-344918.iam.gserviceaccount.com --key-file=/home/averboonen/Llaves/sapient-stacker-344918-2a08df5bbf50.json')
+                    sh '/home/averboonen/google-cloud-sdk/bin/gcloud config set core/project sapient-stacker-344918'
+                    script {
+                         currentBuild.displayName = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+                    }
+                         echo 'Hello World'
+                         sh 'export GOOGLE_APPLICATION_CREDENTIALS="/home/averboonen/Llaves/sapient-stacker-344918-2a08df5bbf50.json" '
+               }
+          }
+          stage('Terrafom Init+Plan') {
+               steps {
+                    sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file="/home/averboonen/Llaves/sapient-stacker-344918-2a08df5bbf50.json"'
+                    //sh '/home/averboonen/google-cloud-sdk/bin/gcloud auth application-default login'
+                    sh 'terraform init'
+                    sh 'terraform plan'
+               }
+          }
+                    stage('Terrafom Apply') {
+               steps {
+                    sh 'terraform apply -auto-approve'
+               }
+                    }
+     }
+}
